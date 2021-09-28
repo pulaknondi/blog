@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->text('details');
             $table->string('photo')->nullable();
             $table->tinyInteger('status')->default(0)->comment("status 1 = published, 0 = unpublished");
+            $table->timestamps('start_date');
+            $table->timestamps('end_date');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

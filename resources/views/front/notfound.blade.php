@@ -8,7 +8,6 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
                     <h1>Blog</h1>
-                  
                     <span class="subheading"></span>
                 </div>
             </div>
@@ -17,32 +16,8 @@
 </header>
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-8">
-            
-        @foreach($data as $row)
-            <!-- Post preview-->
-            <div class="post-preview">
-                <a href="{{ route('user.post.detail',$row->id) }}">
-                    <h2 class="post-title">{{ $row->title }}</h2>
-                    <h3 class="post-subtitle">{{ Str::limit($row->details, 30) }}</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="{{ route('front.name.post',$row->user->id)}}">{{ $row->user->name}}</a>
-                    on {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('M Y') }}
-                </p>
-                <p class="post-meta">Category : <a href="{{ route('front.category.post',$row->category_id)}}">{{ $row->name }}</a></p>
-            </div>
-            <!-- Divider-->
-            <hr class="my-4" />
-        @endforeach   
-            <!-- Pager-->
-            <div class="d-flex justify-content-center">
-
-        </div>
-        </div>
-        <div class="col-md-4">
+    
+    <div class="col-md-4">
     <div class="position-sticky" style="top: 2rem;">
         <div class="p-4 mb-3 bg-light rounded">
         <h4 class="fst-italic">About</h4>
@@ -52,9 +27,13 @@
         <div class="p-4">
         <h4 class="fst-italic">Archives</h4>
         <ol class="list-unstyled mb-0">
-           
-
-            <!-- <li><a href="{{ route('post.monthwise', 'januery') }}">Januery 2021</a></li>
+            <!-- @foreach($data as $row)
+            <li>
+                <a href="{{ route('front.date.post',$row->created_at) }}">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('M Y') }}</a>
+                <a href="{{ route('front.date.post',$row->created_at) }}">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('M Y') }}</a>
+            </li>
+            @endforeach -->
+            <li><a href="{{ route('post.monthwise', 'januery') }}">Januery 2021</a></li>
             <li><a href="{{ route('post.monthwise', 'february') }}">february 2021</a></li>
             <li><a href="{{ route('post.monthwise', 'march') }}">march 2021</a></li>
             <li><a href="{{ route('post.monthwise', 'april') }}">april 2021</a></li>
@@ -65,11 +44,8 @@
             <li><a href="{{ route('post.monthwise', 'september') }}">september 2021</a></li>
             <li><a href="{{ route('post.monthwise', 'october') }}">october 2021</a></li>
             <li><a href="{{ route('post.monthwise', 'november') }}">november 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'december') }}">december 2021</a></li> -->
-           
-            @for ($j = 0; $j <= 5; $j++)
-            <li><a href="{{ route('post.monthwise', date('Y-m',strtotime(-$j.' month'))) }}">{{ date("F Y", strtotime(" -$j month")); }}</a></li>
-            @endfor   
+            <li><a href="{{ route('post.monthwise', 'december') }}">december 2021</a></li>
+            
         </ol>
         </div>
 

@@ -9,7 +9,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Exception;
-
+use Auth;
 class PostController extends Controller
 {   
     public function CreatePost(){
@@ -32,7 +32,7 @@ class PostController extends Controller
                     "photo"       => $photo_name 
                 ]);
 
-                 if ($post) $photo->storeAs('image',$photo_name);
+                if ($post) $photo->storeAs('public/image',$photo_name);
 
                 return response()->json([
                     'success' => true,
@@ -64,7 +64,6 @@ class PostController extends Controller
                 // return $request;
                 $photo      = $request->file('image');
                 $photo_name = date('Ymdhms.') . $photo->getClientOriginalExtension();
-                 
                 $post = Post::findOrFail($id)->update([
 
                     "category_id" => $request->category,
@@ -74,7 +73,7 @@ class PostController extends Controller
                     "photo"       => $photo_name ,
                     "status"      => $request->status,
                 ]);
-
+                if ($post) $photo->storeAs('public/image',$photo_name);
                 return response()->json([
                     'success' => true,
                     'message' => 'Category has been succesfully Updated.'
@@ -82,16 +81,18 @@ class PostController extends Controller
 
             }catch (Exception $e) {
                 return response()->json(['unable' => $e]);
-            }        
-                       
-               
+            }                      
     }
 
     public function index(){
-        $data = Post::join('categories', 'categories.id', '=', 'posts.category_id')->where('posts.status', '=', '1')
+        $data = Post::join('categories', 'categories.id', '=', 'posts.category_id')
         ->get(['posts.*', 'categories.name']);
-  
+
         return view('index',compact('data'));     
     }
-    
+    public function Logout()
+    {
+        Auth::logout();
+        return Redirect()->route('login');
+    }
 }

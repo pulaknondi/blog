@@ -1,5 +1,5 @@
 @extends('user.dashboard.layout')
- @section('content')     
+@section('content')     
 
 <div class="sl-mainpanel">
       <nav class="breadcrumb sl-breadcrumb">

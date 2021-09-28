@@ -3,7 +3,7 @@
   <body>
 
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i>Blog</a></div>
+    <div class="sl-logo"><a href="{{url('/')}}"><i class="icon ion-android-star-outline"></i>Blog</a></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -59,10 +59,8 @@
       <div class="sl-header-right">
         <nav class="nav">
           <div class="dropdown">
-            <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name">Jane<span class="hidden-md-down"> Doe</span></span>
-              <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
-            </a>
+            <a href="{{ route('user.logout') }}">Logout</a>
+            
             <div class="dropdown-menu dropdown-menu-header wd-200">
               <ul class="list-unstyled user-profile-nav">
                 <li><a href=""><i class="icon ion-ios-person-outline"></i> Edit Profile</a></li>
