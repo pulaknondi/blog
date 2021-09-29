@@ -1,5 +1,6 @@
 @extends('site.component.layout')
 @section('content')
+
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
             <div class="container position-relative px-4 px-lg-5">
@@ -29,4 +30,5 @@
                 </div>
             </div>
         </article>
+
 @endsection

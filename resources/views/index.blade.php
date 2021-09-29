@@ -19,11 +19,12 @@
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-8">
-            
+        
         @foreach($data as $row)
+      
             <!-- Post preview-->
             <div class="post-preview">
-                <a href="{{ route('user.post.detail',$row->id) }}">
+                <a href="{{ route('user.posts',$row->slug) }}">
                     <h2 class="post-title">{{ $row->title }}</h2>
                     <h3 class="post-subtitle">{{ Str::limit($row->details, 30) }}</h3>
                 </a>
@@ -32,7 +33,7 @@
                     <a href="{{ route('front.name.post',$row->user->id)}}">{{ $row->user->name}}</a>
                     on {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('M Y') }}
                 </p>
-                <p class="post-meta">Category : <a href="{{ route('front.category.post',$row->category_id)}}">{{ $row->name }}</a></p>
+                <p class="post-meta">Category : <a href="{{ route('front.category.post',$row->catslug)}}">{{ $row->name }}</a></p>
             </div>
             <!-- Divider-->
             <hr class="my-4" />
@@ -52,20 +53,6 @@
         <div class="p-4">
         <h4 class="fst-italic">Archives</h4>
         <ol class="list-unstyled mb-0">
-           
-
-            <!-- <li><a href="{{ route('post.monthwise', 'januery') }}">Januery 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'february') }}">february 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'march') }}">march 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'april') }}">april 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'may') }}">may 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'june') }}">june 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'july') }}">july 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'august') }}">august 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'september') }}">september 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'october') }}">october 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'november') }}">november 2021</a></li>
-            <li><a href="{{ route('post.monthwise', 'december') }}">december 2021</a></li> -->
            
             @for ($j = 0; $j <= 5; $j++)
             <li><a href="{{ route('post.monthwise', date('Y-m',strtotime(-$j.' month'))) }}">{{ date("F Y", strtotime(" -$j month")); }}</a></li>

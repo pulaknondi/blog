@@ -10,18 +10,20 @@ class FrontEndController extends Controller
 {
     public function index(){
         $data = Post::join('categories', 'categories.id', '=', 'posts.category_id')
-        ->get(['posts.*', 'categories.name']);
-    //    return $data;
-        // $date= Post::where("created_at",">", Carbon::now()->subMonths(6))->get();
+        ->get(['posts.*', 'categories.name','categories.slug as catslug']);
         return view('index',compact('data'));     
     }
 
-    public function DetailPost($id){
-        $data = Post::findOrFail($id);
+    public function DetailPost($slug){
+        $data =  Post::join('categories', 'categories.id', '=', 'posts.category_id')->where('posts.slug', '=', $slug)
+        ->get(['posts.*', 'categories.name'])->first();
+        // $data = Post::firstOrFail($slug);
+        // dd($data);
         return view('front.postdetail',compact('data'));  
     }
-    public function CategoryPost($id){
-        $data =  Post::join('categories', 'categories.id', '=', 'posts.category_id')->where('categories.id', '=', $id)
+
+    public function CategoryPost($slug){
+        $data =  Post::join('categories', 'categories.id', '=', 'posts.category_id')->where('categories.slug', '=', $slug)
         ->get(['posts.*', 'categories.name']);
         return view('front.frontcat',compact('data')); 
     }

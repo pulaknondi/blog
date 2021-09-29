@@ -35,8 +35,8 @@ Route::post('/update/category/{id}', [CategoryController::class, 'UpdateCat'])->
 Route::get('/edit/category/{id}', [CategoryController::class,'EditCatView'])->name('user.category.edit.page');
 Route::get('/delete/category/{id}', [CategoryController::class,'DeleteCat'])->name('user.category.delate');
 
-Route::get('/post/details/{id}', [FrontEndController::class,'DetailPost'])->name('user.post.detail');
-Route::get('/index/category/{id}', [FrontEndController::class,'CategoryPost'])->name('front.category.post');
+Route::get('/posts/{slug}', [FrontEndController::class,'DetailPost'])->name('user.posts');
+Route::get('/index/category/{slug}', [FrontEndController::class,'CategoryPost'])->name('front.category.post');
 Route::get('/index/name/{id}', [FrontEndController::class,'NameByPost'])->name('front.name.post');
 Route::get('/date/post/{id}', [FrontEndController::class,'DatebyPost'])->name('front.date.post');
 Route::get('/post/monthwise/{month}', [FrontEndController::class,'monthWisePost'])->name('post.monthwise');

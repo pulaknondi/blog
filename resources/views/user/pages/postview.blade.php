@@ -15,6 +15,13 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
+                  <th class="text-center">
+                    <span>
+                        <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid m-0">
+                            <input type="checkbox" id="checkAll"><span></span>
+                        </label>
+                    </span>
+                  </th>
                   <th class="wd-15p">User Name</th>
                   <th class="wd-15p">Title</th>
                   <th class="wd-15p">Slug</th>
@@ -31,6 +38,13 @@
                 $status=$row->status;
                 @endphp
                 <tr>
+                  <td class="text-center">
+                        <span>
+                            <label class="kt-checkbox kt-checkbox--single kt-checkbox--solid m-0">
+                                <input type="checkbox" class="check-item" name="selected[]" value="{{ $row->id }}"><span></span>
+                            </label>
+                        </span>
+                  </td>
                   <td>{{ $row->user->name}}</td>
                   <td>{{ $row->title }}</td>
                   <td>{{ $row->slug }}</td>
